@@ -9,7 +9,7 @@
 **@return la list a jour
 */
 
-t_list	*ft_lsit_at(t_list *begin_list, unsigned int nbr)
+t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	unsigned int i;
 

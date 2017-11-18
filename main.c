@@ -21,7 +21,7 @@ int		main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("a voir si error ou non\n");
+		ft_putstr("error\n");
 		return (1);
 	}
 	/*
