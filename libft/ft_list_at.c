@@ -11,14 +11,17 @@
 
 t_list	*ft_lsit_at(t_list *begin_list, unsigned int nbr)
 {
-	t_list	*elem;
-	int		size;
+	unsigned int i;
 
-	size = ft_list_size(begin_list);
-	if (nbr < 0 || nbr > size)
-		return (NULL);
-	elem = begin_list;
-	while (nbr--)
-		elem = elem->next;
-	return (elem);
+	i = 0;
+	if (begin_list == 0)
+		return (0);
+	while (i < nbr)
+	{
+		begin_list = begin_list->next;
+		if (begin_list == 0)
+			return (0);
+		i++;
+	}
+	return (begin_list);
 }

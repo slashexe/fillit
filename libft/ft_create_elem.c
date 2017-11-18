@@ -1,13 +1,12 @@
 t_list	*ft_create_elem(void *data)
 {
-	t_list *elem;
+	t_list *tmp;
 
-	elem = NULL;
-	elem = (t_list*)malloc(sizeof(t_list))
-	if (elem)
+	tmp = (t_list*)malloc(sizeof(t_list));
+	if (tmp)
 	{
-		elem->next = NULL;
-		elem->data = data;
+		tmp->data = data;
+		tmp->next = NULL;
 	}
-	return (elem);
+	return (tmp);
 }

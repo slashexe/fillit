@@ -1,17 +1,9 @@
 void	ft_list_clear(t_list **begin_list)
 {
-	t_list	*list;
-	t_list	*tmp;
-
-	list = *begin_list;
-	while (list)
+	while (*begin_list)
 	{
-		if (list->next)
-			tmp = list->next;
-		else
-			tmp = NULL;
-		free(list);
-		list = tmp;
+		free(*begin_list);
+		(*begin_list) = (*begin_list)->next;
 	}
 	*begin_list = NULL;
 }
