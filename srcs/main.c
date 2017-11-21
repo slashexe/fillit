@@ -10,8 +10,8 @@
 **return (char 'A' puis ++)
 */
 
-#include "libft.h"
-#include "fillit.h"
+#include "../include/libft.h"
+#include "../include/fillit.h"
 
 
 int		main(int argc, char **argv)
@@ -19,11 +19,20 @@ int		main(int argc, char **argv)
 	t_list	*list;
 	t_map	*map;
 
-	if (argc != 2)
+	map = init_conf();
+	if (*argc == 2)
 	{
-		ft_putstr("error\n");
-		return (1);
+		if ((map = open_file(argv[1], map)) != NULL)
+		{
+			algo(map);
+			ft_print_grid(map->grid);
+			return (1);
+		}
 	}
+	ft_putstr("error\n");
+	return (0);
+
+
 	/*
 	**read_tetris doit lire entree
 	**
@@ -32,14 +41,9 @@ int		main(int argc, char **argv)
 	**
 	**return t_list list return null si erreur dans la lecture
 	*/
-	if ((list = read_tetri(open(argv[1], O_RDONLY))) == NULL)
-	{
-		ft_putstr("error\n");
-		return (1);
-	}
+
 	/*
 	**reste ici;
 	**resoudre + print
 	*/
-	return (0);
 }

@@ -2,17 +2,26 @@
 # define FILLIT_H
 # include "libft.h"
 
+
+typedef struct		s_point
+{
+	int				x;
+	int				y;
+}					t_point;
+
+typedef struct		s_tris
+{
+	char			name;
+	t_point			coord;
+}					t_tris;
+
 typedef struct		s_map
 {
-	int				size;
-	char			**array;
+	char			**grid;
+	int				min_size;
+	char			nbr_piece;
+	struct s_tris	list_tris[26];
 }					t_map;
-typedef struct		s_list
-{
-	struct s_list	*next;
-	void			*data;
-}					t_list;
-
 
 t_list			*read_tetri(int fd);
 #endif
