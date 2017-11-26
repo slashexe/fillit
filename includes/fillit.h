@@ -12,7 +12,7 @@ typedef struct		s_point
 typedef struct		s_tris
 {
 	char			name;
-	t_point			coord;
+	t_point			coord[4];
 }					t_tris;
 
 typedef struct		s_map
