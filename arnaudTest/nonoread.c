@@ -6,7 +6,7 @@
 /*   By: avinas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 21:16:43 by avinas            #+#    #+#             */
-/*   Updated: 2017/11/23 18:08:13 by avinas           ###   ########.fr       */
+/*   Updated: 2017/11/29 14:57:38 by avinas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,6 @@ int		open_file(char *file)
 	return (fd);
 }
 
-t_tris	getris(char *line, int name)
-{
-	int		cptx;
-	int		cpty;
-	int		cptpoint;
-	t_point	tabpoint[4];
-	t_tris	ret;
-
-	cptx = 0;
-	cpty = 0;
-	cptpoint = 0;
-	while (*line)
-	{
-		(*line == '#' && cptpoint < 4) ? tabpoint[cptpoint].x = cptx : 0;
-		(*line == '#' && cptpoint < 4) ? tabpoint[cptpoint++].y = cpty : 0;
-		if (*line == '#' && cptpoint > 4)
-			return (ret);
-		cptx++;
-		(*line == '\n') ? cpty++ : 0;
-		(*line == '\n') ? cptx = 0 : 0;
-		line++;
-	}
-	if (cptpoint < 3)
-		return (ret);
-	cptx = -1;
-	while (cptx++ < 3)
-	{
-		ret.coord[cptx] = tabpoint[cptx];
-	}
-	ret.name = 'A' + name;
-	return (ret);
-}
-
 int		countris(char *file)
 {
 	char	buff[BUFF_SIZE + 1];
@@ -78,30 +45,37 @@ int		countris(char *file)
 	{
 		buff[pos] = '\0';
 		cptris++;
+		if (isvalide(buff) == 0)
+			return (-1);
 	}
 	close(fd);
 	return (cptris);
 }
 
-t_tris	*nonoread(char *file, int *nbpiece)
+t_tris	*nonoread(char *file, int *nbpiece, int cpt, int pos)
 {
 	int		fd;
-	int		pos;
-	int		cpt;
 	char	buff[BUFF_SIZE + 1];
 	t_tris	*tris;
 
+	tris = NULL;
 	*nbpiece = countris(file);
-	fd = open_file(file);
-	cpt = 0;
-	if (!(tris = (t_tris*)malloc(sizeof(t_tris) * *nbpiece)))
-		return (NULL);
-	while ((pos = read(fd, buff, BUFF_SIZE)))
+	if (*nbpiece == -1)
+		ft_putstr("error\n");
+	else
 	{
-		buff[pos] = '\0';
-		tris[cpt] = getris(buff, cpt);
-		cpt++;
+		fd = open_file(file);
+		if (!(tris = (t_tris*)malloc(sizeof(t_tris) * *nbpiece)))
+			return (NULL);
+		while ((pos = read(fd, buff, BUFF_SIZE)))
+		{
+			buff[pos] = '\0';
+			tris[cpt] = *getris(buff, cpt);
+			(tris[cpt].name == '0') ? ft_putstr("error\n") : 0;
+			if (tris[cpt++].name == '0')
+				return (NULL);
+		}
+		close(fd);
 	}
-	close(fd);
 	return (tris);
 }

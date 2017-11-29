@@ -6,7 +6,7 @@
 /*   By: avinas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 21:10:57 by avinas            #+#    #+#             */
-/*   Updated: 2017/11/23 18:06:35 by avinas           ###   ########.fr       */
+/*   Updated: 2017/11/29 14:46:58 by avinas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int		main(int argc, char **argv)
 	int			cpt;
 	int			cptt;
 	int			nbpiece;
+
 	cpt = 0;
 	cptt = 0;
-	pieces = nonoread(argv[1], &nbpiece);
-
-
+	if (!(pieces = nonoread(argv[1], &nbpiece, 0, 0)))
+		return (0);
 	while (cptt < nbpiece)
 	{
 		while (cpt < 4)
