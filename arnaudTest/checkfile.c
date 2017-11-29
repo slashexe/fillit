@@ -21,6 +21,7 @@ t_tris	*norm_getris(t_point *tabpoint, int name, t_tris *ret)
 	while (cpt++ < 3)
 		ret->coord[cpt] = tabpoint[cpt];
 	ret->name = 'A' + name;
+	//printf("x : %d | y : %d\n", ret->coord[0].x, ret->coord[0].y);
 	return (ret);
 }
 
@@ -44,8 +45,9 @@ t_tris	*getris(char *line, int name)
 		(*line == '#' && cptpoint > 4) ? ret->name = '0' : 0;
 		if (*line == '#' && cptpoint > 4)
 			return (ret);
+		cptx++;
 		(*line == '\n') ? cpty++ : 0;
-		(*line++ == '\n') ? ++cptx = 0 : 0;
+		(*line++ == '\n') ? cptx = 0 : 0;
 	}
 	(cptpoint < 4) ? ret->name = '0' : 0;
 	if (cptpoint < 4)

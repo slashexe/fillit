@@ -44,5 +44,6 @@ typedef struct		s_map
 t_tris				*nonoread(char *file, int *nbpiece, int cpt, int pos);
 int					isvalide(char *line);
 t_tris				*getris(char *line, int name);
+t_tris				ft_driftup(t_tris *reso, t_tris src, int nbpiece);
 
 #endif

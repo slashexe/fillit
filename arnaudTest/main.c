@@ -16,6 +16,7 @@
 int		main(int argc, char **argv)
 {
 	t_tris		*pieces;
+	t_tris		test[1];
 	int			cpt;
 	int			cptt;
 	int			nbpiece;
@@ -24,6 +25,8 @@ int		main(int argc, char **argv)
 	cptt = 0;
 	if (!(pieces = nonoread(argv[1], &nbpiece, 0, 0)))
 		return (0);
+	test[0] = pieces[0];
+	pieces[1] = ft_driftup(test, pieces[1], nbpiece - 1);
 	while (cptt < nbpiece)
 	{
 		while (cpt < 4)
