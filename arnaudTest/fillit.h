@@ -13,6 +13,7 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "libft.h"
+# include <stdlib.h>
 
 typedef struct		s_point
 {
@@ -45,5 +46,9 @@ t_tris				*nonoread(char *file, int *nbpiece, int cpt, int pos);
 int					isvalide(char *line);
 t_tris				*getris(char *line, int name);
 t_tris				ft_driftup(t_tris *reso, t_tris src, int nbpiece);
+t_tris				ft_driftleft(t_tris *reso, t_tris src, int nbpiece);
+t_tris				ft_driftright(t_tris *reso, t_tris src, int nbpiece);
+void				ft_get_grid(t_tris *grid, int size, int nb_pieces);
+int					ft_get_size(t_tris *reso, t_tris src, int nbpiece);
 
 #endif

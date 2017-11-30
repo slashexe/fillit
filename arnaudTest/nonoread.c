@@ -14,7 +14,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include "fillit.h"
 
 #define BUFF_SIZE 21
