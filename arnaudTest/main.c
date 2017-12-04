@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 	if (!(test = (t_tris*)malloc(sizeof(t_tris) * nbpiece)))
 		return (0);
 	test = resolve(pieces, nbpiece);
-	ft_get_grid(test, ft_get_size(test, test[cpt], nbtest) + 1, nbpiece - 1);
+	ft_get_grid(test, ft_get_size(test, nbtest) + 1, nbpiece - 1);
 	/*test[0] = ft_driftz(pieces[0]);
 	nbtest++;
 	while (cpt < nbpiece)
@@ -43,7 +43,7 @@ int		main(int argc, char **argv)
 		cpt++;
 		nbtest++;
 	}
-	ft_get_grid(test, ft_get_size(test, test[cpt], nbtest) + 1, nbpiece - 1);
+	ft_get_grid(test, ft_get_size(test, test[cqpt], nbtest) + 1, nbpiece - 1);
 	cpt = 0;
 	cptt = 0;
 	while (cptt < nbpiece)

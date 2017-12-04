@@ -27,7 +27,7 @@ char		**ft_new_grid(int size)
 	return (ret);
 }
 
-int			ft_get_size(t_tris *reso, t_tris src, int nbpiece)
+int			ft_get_size(t_tris *reso, int nbpiece)
 {
 	int cptreso;
 	int cptcoord;

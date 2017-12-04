@@ -55,8 +55,8 @@ t_tris				*getris(char *line, int name);
 t_tris				ft_drift_ul(t_tris *reso, t_tris src, int nbpiece);
 t_tris				ft_driftright(t_tris *reso, t_tris src, int nbpiece);
 void				ft_get_grid(t_tris *grid, int size, int nb_pieces);
-int					ft_get_size(t_tris *reso, t_tris src, int nbpiece);
+int					ft_get_size(t_tris *reso, int nbpiece);
 t_tris				ft_driftz(t_tris src);
-t_tris				*resolve(pieces, nbpiece);
+t_tris				*resolve(t_tris *pieces, int nbpiece);
 
 #endif

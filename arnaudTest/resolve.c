@@ -1,5 +1,5 @@
 #include "fillit.h"
-
+/*
 int		reso(t_tris ret, t_tris *pieces, int nbpiece, int size, int iter);
 {
 	if (iter == nbpiece)
@@ -35,13 +35,14 @@ t_tris	*resolve(t_tris *pieces, int nbpiece);
 		if(size)
 	}
 	reurn (ret);
-}
+}*/
 
-t_tris	*resolve(t_tris *pieces, int nbpiece);
+t_tris	*resolve(t_tris *pieces, int nbpiece)
 {
 	int		cpta;
 	int		cptb;
 	int		cpt;
+	t_tris	tmp;
 	t_tris	*tab;
 	t_duo	temp;
 	t_duo	*ret;
@@ -49,9 +50,9 @@ t_tris	*resolve(t_tris *pieces, int nbpiece);
 	cpt = 0;
 	cpta = 0;
 	cptb = 1;
-	if (!ret = (t_duo*)malloc(sizeof(t_duo) * nbpiece * (nbpiece - 1)))
+	if (!(ret = (t_duo*)malloc(sizeof(t_duo) * nbpiece * (nbpiece - 1))))
 		return (0);
-	if (!tab = (t_duo*)malloc(sizeof(t_duo) * 2)
+	if (!(tab = (t_tris*)malloc(sizeof(t_tris) * 2)))
 		return (0);
 	while (cpta < nbpiece)
 	{
@@ -60,13 +61,13 @@ t_tris	*resolve(t_tris *pieces, int nbpiece);
 		{
 			if (cpta != cptb)
 			{
-				tab[0] = NULL;
-				tab[1] = NULL;
+				tab[0] = tmp;
+				tab[1] = tmp;
 				tab[0] = ft_driftz(pieces[cpta]);
 				tab[1] = ft_drift_ul(tab, pieces[cptb], 1);
 				temp.a = tab[0];
 				temp.b = tab[1];
-				
+				temp.size = ft_get_size(tab, 2);
 				ret[cpt] = temp;
 				cpt++; 
 			}
@@ -74,6 +75,7 @@ t_tris	*resolve(t_tris *pieces, int nbpiece);
 		}
 		cpta++;
 	}
+	return (tab);
 }
 
 
