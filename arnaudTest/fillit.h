@@ -27,6 +27,13 @@ typedef struct		s_tris
 	t_point			coord[4];
 }					t_tris;
 
+typedef struct		s_duo
+{
+	t_tris			a;
+	t_tris			b;
+	int				size;
+}					t_duo;
+
 typedef struct		s_lstris
 {
 	t_tris			elem;
@@ -45,10 +52,11 @@ typedef struct		s_map
 t_tris				*nonoread(char *file, int *nbpiece, int cpt, int pos);
 int					isvalide(char *line);
 t_tris				*getris(char *line, int name);
-t_tris				ft_driftup(t_tris *reso, t_tris src, int nbpiece);
-t_tris				ft_driftleft(t_tris *reso, t_tris src, int nbpiece);
+t_tris				ft_drift_ul(t_tris *reso, t_tris src, int nbpiece);
 t_tris				ft_driftright(t_tris *reso, t_tris src, int nbpiece);
 void				ft_get_grid(t_tris *grid, int size, int nb_pieces);
 int					ft_get_size(t_tris *reso, t_tris src, int nbpiece);
+t_tris				ft_driftz(t_tris src);
+t_tris				*resolve(pieces, nbpiece);
 
 #endif

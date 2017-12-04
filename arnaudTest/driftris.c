@@ -1,144 +1,101 @@
 #include "fillit.h"
 
-void	normedriftup(t_tris *reso, t_tris src, int nbpiece, int *isedge, int cptres)
+t_tris	ft_drift_ul(t_tris *reso, t_tris src, int nbpiece)
 {
+	int isedge_y;
+	int isedge_x;
+	int cptres;
 	int cptsrc;
-	int cptris;
+	int cptcoord;
+	int cptresocoord;
 
-	cptsrc = 0;
-	cptris = 0;
-	cptsrc = 0;
-
-	while (cptsrc < 4)
+	isedge_x = 0;
+	isedge_y = 0;
+	while (!isedge_x || !isedge_y)
 	{
-		cptris = 0;
-		while(cptris < nbpiece)
+		cptres = 0;
+		while (cptres < nbpiece)
 		{
-			cptres = 0;
-			while(cptres < 4)
+			cptresocoord = 0;
+			while (cptresocoord < 4)
 			{
-				if ((reso[cptris].coord[cptres].y == src.coord[cptsrc].y - 1 \
-				&& reso[cptris].coord[cptres].x == src.coord[cptsrc].x) \
-				|| src.coord[cptsrc].y - 1 < 0)
-					*isedge = 1;
-				cptres++;
-			}
-			cptris++;
-		}
-		cptsrc++;
-	}
-}
-
-void	normedriftleft(t_tris *reso, t_tris src, int nbpiece, int *isedge, int cptres)
-{
-	int cptsrc;
-	int cptris;
-
-	cptsrc = 0;
-	cptris = 0;
-	while (cptsrc < 4)
-	{
-		cptris = 0;
-		while(cptris < nbpiece)
-		{
-			cptres = 0;
-			while(cptres < 4)
-			{
-				if ((reso[cptris].coord[cptres].x == src.coord[cptsrc].x - 1 \
-				&& reso[cptris].coord[cptres].y == src.coord[cptsrc].y) \
-				|| src.coord[cptsrc].x - 1 < 0)
-					*isedge = 1;
-				cptres++;
-			}
-			cptris++;
-		}
-		cptsrc++;
-	}
-}
-
-t_tris	ft_driftup(t_tris *reso, t_tris src, int nbpiece)
-{
-	int	isedge;
-	int	cptres;
-
-	cptres = 0;
-	isedge = 0;
-	if (nbpiece < 1)
-	{
-		while (!isedge)
-		{
-			while (cptres < 4)
-			{
-				if (src.coord[cptres].y - 1 > 0)
+				cptcoord = 0;
+				while (cptcoord < 4)
 				{
-					isedge = 1;
+					if ((reso[cptres].coord[cptresocoord].x == src.coord[cptcoord].x - 1 \
+					&& reso[cptres].coord[cptresocoord].y == src.coord[cptcoord].y) \
+					|| (reso[cptres].coord[cptresocoord].x == src.coord[cptcoord].x - 1 \
+					&& reso[cptres].coord[cptresocoord].y == src.coord[cptcoord].y - 1) \
+					|| src.coord[cptcoord].x - 1 < 0)
+					{
+						isedge_x = 1;
+						printf("x point : %c %c \nreso.x = %d | src.x = %d\nreso.y = %d | src.y = %d\n\n",src.name ,reso[cptres].name, \ 
+						reso[cptres].coord[cptresocoord].x, \
+						src.coord[cptcoord].x,\
+						reso[cptres].coord[cptresocoord].y,\
+						src.coord[cptcoord].y);
+					}
+					if ((reso[cptres].coord[cptresocoord].y == src.coord[cptcoord].y - 1 \
+					&& reso[cptres].coord[cptresocoord].x == src.coord[cptcoord].x) \
+					|| src.coord[cptcoord].y - 1 < 0)
+					{
+						printf("y point : %c %c\nreso.x = %d | src.x = %d\nreso.y = %d | src.y = %d\n\n",src.name ,reso[cptres].name, \ 
+						reso[cptres].coord[cptresocoord].x, \
+						src.coord[cptcoord].x,\
+						reso[cptres].coord[cptresocoord].y,\
+						src.coord[cptcoord].y);
+						isedge_y = 1;
+					}
+					cptcoord++;
 				}
-				cptres++;
+				cptresocoord++;
 			}
-			if (!isedge)
-			{
-				cptres = -1;
-				while (++cptres < 4)
-					src.coord[cptres].y--;
-			}
+			cptres++;
 		}
-	}
-	else
-	{
-		while (!isedge)
+		if (!isedge_x)
 		{
-			normedriftup(reso, src, nbpiece, &isedge, cptres);
-			if (!isedge)
-			{
-				cptres = -1;
-				while (++cptres < 4)
-					src.coord[cptres].y--;
-			}
+			cptcoord = -1;
+			while (++cptcoord < 4)
+				src.coord[cptcoord].x--;
+		}
+		if (!isedge_y)
+		{
+			cptcoord = -1;
+			while (++cptcoord < 4)
+				src.coord[cptcoord].y--;
+		}
+		if (isedge_x != isedge_y)
+		{
+			isedge_x = 0;
+			isedge_y = 0;
 		}
 	}
 	return (src);
 }
 
-t_tris	ft_driftleft(t_tris *reso, t_tris src, int nbpiece)
+t_tris	ft_driftz(t_tris src)
 {
-	int	isedge;
-	int	cptres;
+	int	cptcoord;
+	int min_x;
+	int min_y;
 
-	cptres = 0;
-	isedge = 0;
-	
-	if (nbpiece < 1)
+	cptcoord = 0;
+	min_x = src.coord[cptcoord].x;
+	min_y = src.coord[cptcoord].y;
+	while (cptcoord < 4)
 	{
-		while (!isedge)
-		{
-			while (cptres < 4)
-			{
-				if (src.coord[cptres].x - 1 > 0)
-				{
-					isedge = 1;
-				}
-				cptres++;
-			}
-			if (!isedge)
-			{
-				cptres = -1;
-				while (++cptres < 4)
-					src.coord[cptres].x--;
-			}
-		}
+		if (min_x > src.coord[cptcoord].x)
+			min_x = src.coord[cptcoord].x;
+		if (min_y > src.coord[cptcoord].y)
+			min_y = src.coord[cptcoord].y;
+		cptcoord++;
 	}
-	else
+	cptcoord = 0;
+	while (cptcoord < 4)
 	{
-		while (!isedge)
-		{
-			normedriftleft(reso, src, nbpiece, &isedge, cptres);
-			if (!isedge)
-			{
-				cptres = -1;
-				while (++cptres < 4)
-					src.coord[cptres].x--;
-			}
-		}
+		src.coord[cptcoord].x -= min_x;
+		src.coord[cptcoord].y -= min_y;
+		cptcoord++;
 	}
 	return (src);
 }
@@ -170,28 +127,12 @@ t_tris	ft_driftright(t_tris *reso, t_tris src, int nbpiece)
 	cptcoord = 0;
 	while (cptcoord < 4)
 	{
-		src.coord[cptcoord].x += max_x;
+		src.coord[cptcoord].x += max_x + 1;
 		src.coord[cptcoord].y += max_y;
 		cptcoord++;
 	}
 	return (src);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -21,23 +21,29 @@ int		main(int argc, char **argv)
 	int			cptt;
 	int			nbpiece;
 	int			nbtest;
+	int cptmp;
+	int cpty;
 
-	cpt = 0;
+	
+	cpt = 1;
 	cptt = 0;
 	nbtest = 0;
 	if (!(pieces = nonoread(argv[1], &nbpiece, 0, 0)))
 		return (0);
 	if (!(test = (t_tris*)malloc(sizeof(t_tris) * nbpiece)))
 		return (0);
+	test = resolve(pieces, nbpiece);
+	ft_get_grid(test, ft_get_size(test, test[cpt], nbtest) + 1, nbpiece - 1);
+	/*test[0] = ft_driftz(pieces[0]);
+	nbtest++;
 	while (cpt < nbpiece)
 	{
 		pieces[cpt] = ft_driftright(test, pieces[cpt], nbtest);
-		pieces[cpt] = ft_driftup(test, pieces[cpt], nbtest);
-		test[cpt] = ft_driftleft(test, pieces[cpt], nbtest);
+		test[cpt] = ft_drift_ul(test, pieces[cpt], nbtest);
 		cpt++;
 		nbtest++;
 	}
-	ft_get_grid(pieces, ft_get_size(test, pieces[cpt], nbtest), nbpiece - 1);
+	ft_get_grid(test, ft_get_size(test, test[cpt], nbtest) + 1, nbpiece - 1);
 	cpt = 0;
 	cptt = 0;
 	while (cptt < nbpiece)
@@ -54,9 +60,8 @@ int		main(int argc, char **argv)
 	}
 	cpt = 0;
 	cptt = 0;
-/*
-	printf("%s\n", "__________________________________________________________");
 
+	printf("%s\n", "__________________________________________________________");
 	test[0] = pieces[0];
 	pieces[1] = ft_driftright(test, pieces[1], nbpiece - 1);
 	while (cptt < nbpiece)

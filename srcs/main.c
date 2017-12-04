@@ -31,6 +31,7 @@ int		main(int argc, char **argv)
 	}
 	ft_putstr("error\n");
 	return (0);
+	
 
 
 	/*
@@ -44,6 +45,7 @@ int		main(int argc, char **argv)
 
 	/*
 	**reste ici;
+	
 	**resoudre + print
 	*/
 }

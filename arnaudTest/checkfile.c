@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "fillit.h"
 
 t_tris	*norm_getris(t_point *tabpoint, int name, t_tris *ret)
