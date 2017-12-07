@@ -37,7 +37,39 @@ t_tris	*resolve(t_tris *pieces, int nbpiece);
 	reurn (ret);
 }*/
 
-t_tris	*resolve(t_tris *pieces, int nbpiece)
+static t_lstris	*add_link(t_lstris *list, t_tris pieces)
+{
+	t_list *tmp;
+
+	if (!(tmp = malloc(sizeof(t_lstris))))
+		return (0);
+	if (tmp)
+	{
+		tmp->elem = pieces;
+		tmp->next = list;
+	}
+	return (tmp);
+}
+
+t_lstris 		*to_list(t_tris *pieces, int nbpiece)
+{
+	t_lstris		*ret;
+	int				i;
+
+	if (!(ret = (t_lstris*)malloc(sizeof(t_lstris))))
+		return (0);
+	ret->elem = pieces[0];
+	ret->next = ret;
+	i = 1;
+	while (i < nbpiece)
+	{
+		ret = add_link(ret, pieces[i]);
+		i++;
+	}
+	return (tmp);
+}
+
+t_tris			*resolve(t_tris *pieces, int nbpiece)
 {
 	int		cpta;
 	int		cptb;

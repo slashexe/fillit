@@ -38,7 +38,6 @@ typedef struct		s_lstris
 {
 	t_tris			elem;
 	struct s_lstris	*next;
-	struct s_lstris	*prev;
 }					t_lstris;
 
 typedef struct		s_map
@@ -58,5 +57,6 @@ void				ft_get_grid(t_tris *grid, int size, int nb_pieces);
 int					ft_get_size(t_tris *reso, int nbpiece);
 t_tris				ft_driftz(t_tris src);
 t_tris				*resolve(t_tris *pieces, int nbpiece);
+t_lstris			*to_list(t_tris *pieces, int nbpiece);
 
 #endif
